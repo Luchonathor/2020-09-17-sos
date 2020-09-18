@@ -14,10 +14,8 @@ export class ListaproductosComponent implements DoCheck {
     @Host() private _app: AppComponent
   ) {}
 
-  
   ngDoCheck(){
     this.listaProductos = this._app.listaProductos;
-    console.log(this.listaProductos)
   }
 
 }

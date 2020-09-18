@@ -1,4 +1,3 @@
-import { ConstantPool } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { BodegasService } from './services/bodegas/bodegas.service';
 import { ProductosService } from './services/productos/productos.service';
@@ -30,13 +29,13 @@ export class AppComponent implements OnInit{
   ){
 		this.btn_disabled = false;
 		this.buildFormProducto();
-		this.buildFormEstadoProducto();
+    this.buildFormEstadoProducto();
+    this.msg_error_text = new Array()
   }
 
   ngOnInit(){
     this.getBodegas();
     this.getProductos();
-    // this.getProducto(1);
   }
 
   getBodegas(){
@@ -53,15 +52,12 @@ export class AppComponent implements OnInit{
 
   getProducto(id: number){
     this.productosService.getProducto(id).subscribe(
-      result => { 
-        console.log(result);
-        this.producto = result;
-      }
+      result => { this.producto = result; }
     );
   }
 
-  // Formularios 
-	// Crear geters de los campos del formulario de producto  
+  /***** FORMULARIOS REACTIVOS *****/
+  /***** FORMULARIO DE CREAR Y EDITAR *****/
 	get fldId(){ return this.formProducto.get("id"); }
 	get fldNombre(){ return this.formProducto.get("nombre"); }
 	get fldCodigo(){ return this.formProducto.get("codigo"); }
@@ -69,7 +65,6 @@ export class AppComponent implements OnInit{
 	get fldExistencias(){ return this.formProducto.get("existencias"); }
 	get fldBodega(){ return this.formProducto.get("id_bodega"); }
 
-	// Formularios Reactivos
 	private buildFormProducto(){
 		this.formProducto = this.formBuilder.group({
 			nombre: ['', Validators.required],
@@ -80,13 +75,7 @@ export class AppComponent implements OnInit{
 		});
 	}
 
-	// Crear geters de los campos del formulario del estado del producto  
-	get fldId_producto(){ return this.formEstado.get("id_producto"); }
-	get fldEstado(){ return this.formEstado.get("estado"); }
-
   public validateProducto(){
-    console.log(`Entro en validacion de producto`);
-		// Se valida el contenido del formulario
 		this.msg_success_text = null;
 		this.msg_error_text = new Array();
 		if (this.fldNombre.touched && this.fldNombre.hasError("required")) { this.msg_error_text.push(`El campo Producto es requerido.`); }
@@ -96,6 +85,19 @@ export class AppComponent implements OnInit{
 		if (this.fldBodega.touched && this.fldBodega.hasError("required")) { this.msg_error_text.push(`El campo Bodega es requerido.`); }
   }
 
+  actualizar(){
+    console.log(`Entro en función actualizar`);
+    console.log(this.formProducto.value);
+    if (this.formProducto.valid) {
+      console.log(this.formProducto.value)
+      this.formProducto.reset
+    }
+  }
+
+  /***** FORMULARIO DE ACTUALIZACION DEL ESTADO *****/
+	get fldId_producto(){ return this.formEstado.get("id_producto"); }
+	get fldEstado(){ return this.formEstado.get("estado"); }
+
   private buildFormEstadoProducto(){
 		this.formEstado = this.formBuilder.group({
 			id_producto: ['', Validators.required],
@@ -104,20 +106,10 @@ export class AppComponent implements OnInit{
 	}
 
 	public validateEstadoProducto(){
-    console.log(`Entroe en validacion del estado`)
-		// Se valida el contenido del formulario
 		this.msg_success_text = null;
 		this.msg_error_text = new Array();
 		if (this.fldId_producto.touched && this.fldId_producto.hasError("required")) { this.msg_error_text.push(`El campo id_producto es requerido.`); }
 		if (this.fldEstado.touched && this.fldEstado.hasError("required")) { this.msg_error_text.push(`El campo Estado es requerido.`); }
-  }
-
-  actualizar(){
-    console.log(`Entro en función actualizar`);
-    if (this.formProducto.valid) {
-      console.log(this.formProducto.value)
-      this.formProducto.reset
-    }
   }
 
   actualizar_estado(){

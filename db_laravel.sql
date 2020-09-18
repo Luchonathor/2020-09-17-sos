@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `bodegas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla prb_sos_laravel.bodegas: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla prb_sos_laravel.bodegas: ~2 rows (aproximadamente)
 DELETE FROM `bodegas`;
 /*!40000 ALTER TABLE `bodegas` DISABLE KEYS */;
 INSERT INTO `bodegas` (`id`, `nombre`, `direccion`, `created_at`, `updated_at`) VALUES
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla prb_sos_laravel.migrations: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla prb_sos_laravel.migrations: ~4 rows (aproximadamente)
 DELETE FROM `migrations`;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -103,14 +103,15 @@ CREATE TABLE IF NOT EXISTS `productos` (
   PRIMARY KEY (`id`),
   KEY `productos_id_bodega_foreign` (`id_bodega`),
   CONSTRAINT `productos_id_bodega_foreign` FOREIGN KEY (`id_bodega`) REFERENCES `bodegas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Volcando datos para la tabla prb_sos_laravel.productos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla prb_sos_laravel.productos: ~2 rows (aproximadamente)
 DELETE FROM `productos`;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
 INSERT INTO `productos` (`id`, `nombre`, `codigo`, `existencia`, `descripcion`, `estado`, `created_at`, `updated_at`, `id_bodega`) VALUES
 	(1, 'Producto 1', '02225641', 600, 'Nuevo producto 1', 'pendiente', '2020-09-18 15:21:49', '2020-09-18 15:21:49', 1),
-	(2, 'Producto 2', '12356987', 120, 'Nuevo producto 2', 'pendiente', '2020-09-18 15:22:14', '2020-09-18 15:22:14', 2);
+	(2, 'Producto 2', '12356987', 120, 'Nuevo producto 2', 'inactivo', '2020-09-18 15:22:14', '2020-09-18 15:22:14', 3),
+	(3, 'Producto 3', '6546587', 50, 'el producto 3', 'activo', '2020-09-18 15:12:40', '2020-09-18 15:12:40', 2);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 
 -- Volcando estructura para tabla prb_sos_laravel.users
