@@ -29,29 +29,59 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="msg_error"></div>
-					<form id="form_data">
+					<div *ngIf="msg_error_text"></div>
+					<form [formGroup]="formProducto" novalidate (ngSubmit)="actualizar()">
 						<input type="hidden" id="id">
 						<div class="row justify-content-center">
-						<div class="col-12 form-group">
+							<div class="col-12 form-group">
 								<label for="producto">(*)Producto:</label>
-								<input type="text" id="producto" class="form-control" placeholder="Producto">
+								<input 
+									type="text" 
+									formControlName="nombre" 
+									class="form-control" 
+									placeholder="Producto"
+									required
+								>
 							</div>
 							<div class="col-12 form-group">
 								<label for="descripcion">(*)Descripción:</label>
-								<input type="text" id="descripcion" class="form-control" placeholder="Descripción">
+								<input 
+									type="text" 
+									formControlName="descripcion" 
+									class="form-control" 
+									placeholder="Descripción"
+									required
+								>
 							</div>
 							<div class="col-12 form-group">
 								<label for="codigo">(*)Código:</label>
-								<input type="text" id="codigo" class="form-control" placeholder="Código">
+								<input 
+									type="text" 
+									formControlName="codigo" 
+									class="form-control" 
+									placeholder="Código"
+									required
+								>
 							</div>
 							<div class="col-12 form-group">
 								<label for="existencias">(*)Existencias:</label>
-								<input type="number" id="existencias" class="form-control" placeholder="Existencias" min="0">
+								<input 
+									type="number" 
+									formControlName="existencias" 
+									class="form-control" 
+									placeholder="Existencias" 
+									min="0"
+									required
+								>
 							</div>
 							<div class="col-12 form-group">
 								<label for="bodega">(*)Bodega:</label>
-								<select id="bodega" class="form-control" placeholder="Bodega">
+								<select 
+									formControlName="id_bodega" 
+									class="form-control" 
+									placeholder="Bodega"
+									required
+								>
 									<option value="" selected="selected" disabled="disabled">Seleccione</option>
 								</select>
 							</div>
@@ -61,7 +91,14 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary text-right" id="actualizar" data-toggle="modal" data-target="#exampleModal">Guardar</button>
+					<button 
+						type="button" 
+						class="btn btn-primary text-right" 
+						(click)="actualizar()"
+						[disabled]="formProducto.invalid"
+						data-toggle="modal" 
+						data-target="#exampleModal"
+					>Guardar</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
 			</div>
@@ -79,12 +116,21 @@
 				</div>
 				<div class="modal-body">
 					<div class="msg_error"></div>
-					<form id="form_estado">
-						<input type="hidden" id="id_estado">
+					<form [formGroup]="formEstado" novalidate (ngSubmit)="actualizar_estado()">
+						<input 
+							type="text"
+							formControlName="id_producto"
+							required
+						>
 						<div class="row justify-content-center">
 							<div class="col-12 form-group">
 								<label for="estado_producto">(*)Estado:</label>
-								<select id="estado_producto" class="form-control" placeholder="Estado">
+								<select 
+									formControlName="estado"
+									class="form-control" 
+									placeholder="Estado"
+									required
+								>
 									<option value="" selected="selected" disabled="disabled">Seleccione</option>
 								</select>
 							</div>
@@ -94,7 +140,13 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary text-right" id="actualizar_estado">Guardar</button>
+					<button 
+						type="button" 
+						class="btn btn-primary text-right" 
+						id="actualizar_estado"
+						(click)="actualizar_estado()"
+						[disabled]="formProducto.invalid"
+					>Guardar</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
 			</div>
