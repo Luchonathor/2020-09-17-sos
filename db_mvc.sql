@@ -54,9 +54,9 @@ CREATE TABLE IF NOT EXISTS `prb_productos` (
 DELETE FROM `prb_productos`;
 /*!40000 ALTER TABLE `prb_productos` DISABLE KEYS */;
 INSERT INTO `prb_productos` (`id`, `nombre`, `codigo`, `existencia`, `id_bodega`, `descripcion`, `estado`) VALUES
-	(1, 'Producto 1', '000001', 250, 1, 'Es un producto básico', 'inactivo'),
+	(1, 'Producto 1', '000001', 250, 1, 'Es un producto básico', 'activo'),
 	(2, 'Producto 2', '000002', 0, 3, 'Es un nuevo producto', 'activo'),
-	(3, 'Producto 4', '00004', 20, 2, 'Desde el formulario', 'activo');
+	(3, 'Producto 4', '00004', 20, 2, 'Desde el formulario', 'inactivo');
 /*!40000 ALTER TABLE `prb_productos` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
