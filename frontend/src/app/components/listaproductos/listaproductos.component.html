@@ -1,0 +1,70 @@
+<table class="table table-sm table-striped" id="table_productos">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Nombre Producto</th>
+            <th scope="col">Código</th>
+            <th scope="col">Existencias</th>
+            <th scope="col">Bodega</th>
+            <th scope="col">Editar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let productos of listaProductos">
+            <td>
+                <div>{{productos.nombre}}</div>
+                <div><small>{{productos.descripcion}}</small></div>
+            </td>
+            <td>{{productos.codigo}}</td>
+            <td>{{productos.existencia}}</td>
+            <td>
+                <div>{{productos.id_bodega}}</div>
+                <div><small>{{productos.id_bodega}}</small></div>
+            </td>
+            <td class="text-right">
+                <button 
+                    type="button" 
+                    class="btn btn-primary btn-sm form editar" 
+                    data-toggle="modal" 
+                    data-target="#form"
+                    data-id="item.id}"
+                    data-producto="item.PRODUCTO}"
+                    data-descripcion="item.descripcion}"
+                    data-codigo="item.codigo}"
+                    data-existencia="item.existencia}"
+                    data-id_bodega="item.ID_BODEGA}"
+                >Editar</button>
+                <button 
+                    *ngIf="productos.estado == 'activo'"
+                    type="button" 
+                    class="btn btn-success btn-sm col-4 estado" 
+                    data-toggle="modal"
+                    data-target="#estado"
+                >{{productos.estado | uppercase}}</button>
+                <button 
+                    *ngIf="productos.estado == 'inactivo'"
+                    type="button" 
+                    class="btn btn-danger btn-sm col-4 estado" 
+                    data-toggle="modal"
+                    data-target="#estado"
+                >{{productos.estado | uppercase}}</button>
+                <button 
+                    *ngIf="productos.estado == 'pendiente'"
+                    type="button" 
+                    class="btn btn-warning btn-sm col-4 estado" 
+                    data-toggle="modal"
+                    data-target="#estado"
+                >{{productos.estado | uppercase}}</button>
+            </td>
+            <!-- <div class="login-page" [ngSwitch]="home_page" *ngIf="!logged">
+                <pdg-login *ngSwitchCase="'login'"></pdg-login>
+                <pdg-forgot-pass *ngSwitchCase="'send_mail'"></pdg-forgot-pass>
+                <pdg-reset-pass *ngSwitchCase="'restart_pass'"></pdg-reset-pass>
+                <pdg-msg-no-page *ngSwitchDefault=""></pdg-msg-no-page>
+            </div> -->
+            
+
+        </tr>
+
+
+    </tbody>
+</table>
